@@ -27,7 +27,7 @@ public class Pickup : MonoBehaviour
 
     public Storage storage;
 
-    public bool onCraftingGrid = false;
+    public bool onCraftingGrid;
 
     public Vector3 lastHeld;
     public int slotNo;
@@ -36,10 +36,13 @@ public class Pickup : MonoBehaviour
 
     [SerializeField]
     GameObject recipe;
+    //Vector3 recipe;
 
     // Start is called before the first frame update
     void Start()
     {
+        //onCraftingGrid = false;
+        //recipe = transform.position;
         GetComponent<SpriteRenderer>().material = illuminated;
         state = State.OnMap;
     }
@@ -70,8 +73,10 @@ public class Pickup : MonoBehaviour
             onCraftingGrid = false;
             transform.position = mouse;
         }
+        Debug.Log(onCraftingGrid);
         if (onCraftingGrid)
         {
+            transform.position = FindObjectOfType<Crafting>().transform.position + recipe.transform.position;
             //transform.position = recipe.transform.position;
         }
         

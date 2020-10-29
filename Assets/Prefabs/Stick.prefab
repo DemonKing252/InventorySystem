@@ -241,9 +241,9 @@ MonoBehaviour:
   illuminated: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   owner: 3
   state: 0
+  crafting: 0
   storage: 0
-  onCraftingGrid: 1
+  onCraftingGrid: 0
   lastHeld: {x: 0, y: 0, z: 0}
   slotNo: 0
   no: 0
-  recipe: {fileID: 3671098410258144571, guid: 091122cbd98daeb4db6a5eccda1e1fd8, type: 3}

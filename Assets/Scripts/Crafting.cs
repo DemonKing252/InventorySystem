@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 public struct Ingrediant
@@ -137,19 +138,50 @@ public class Crafting : MonoBehaviour
                         Recipe temp = new Recipe();
                         // Craft recipe:
                         bool validRecipe = false;
+                        //List<Ingrediant> temps = new List<Ingrediant>();
+                        List<bool> temps = new List<bool>();
                         foreach (var item in slotStates)
                         {
 
                             foreach (var ingrediant in rubyPickaxe.ingrediants)
                             {
-                                //Debug.Log(item.owner == ingrediant.ingrediant);
-                                if (item.owner == ingrediant.ingrediant)
-                                    validRecipe = true;
+
+                                foreach (var s in slotStates)
+                                {
+
+                                    bool y = false;
+                                    foreach (var it in rubyPickaxe.ingrediants)
+                                    {
+                                        if (s.owner == it.ingrediant || s.owner == Owner.None)
+                                        {
+                                            //temps.Add(true);
+                                            y = true;
+                                        }
+                                    }
+
+                                    temps.Add(y);
+                                }
+                                
+                                //if (y)
+                                //{
+                                //    temps.Add(y);
+                                //    validRecipe = true;
+                                //}
+                                //else
+                                //{
+                                //    temps.Add(false);
+                                //}
+                                validRecipe = true;
+                                foreach (var i in temps)
+                                {
+                                    if (i == false)
+                                        validRecipe = false;
+                                    //Debug.Log(i);
+                                }
 
                                 if (item.owner == ingrediant.ingrediant && item.items >= ingrediant.amountNeeded)
                                 {
-                                    //Debug.Log("In");
-
+                                    
                                     temp.currentNoOfRecipies++;
 
                                     if (temp.currentNoOfRecipies >= rubyPickaxe.recipiesNeeded)
@@ -159,6 +191,7 @@ public class Crafting : MonoBehaviour
                                         //Debug.Log("Recipe Unlocked!");
                                         if (validRecipe)
                                         {
+                                            Debug.Log("Recipe Unlocked!");
                                             int z = 0;
                                             foreach (var i in slotStates)
                                             {

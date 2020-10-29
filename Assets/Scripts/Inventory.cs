@@ -23,6 +23,7 @@ public class Slot
     public State state;
     public bool taken;
     public int items;
+    public int indexInWorld;    // of the pickup
 
     public Slot() { taken = false; items = 0; owner = Owner.None; }
 
@@ -53,6 +54,10 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < slots.Count; i++)
         {
            slots[i].GetComponentInChildren<TextMesh>().text = "";
+        }
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Pickup").Length; i++)
+        {
+            GameObject.FindGameObjectsWithTag("Pickup")[i].GetComponent<Pickup>().no = i;
         }
     }
 

@@ -22,13 +22,21 @@ public class Pickup : MonoBehaviour
     public Owner owner;
     public State state;
 
+    public bool crafting = false;
     bool held = false;
 
     public Storage storage;
 
+    public bool onCraftingGrid = false;
 
     public Vector3 lastHeld;
     public int slotNo;
+    public int no;
+
+
+    [SerializeField]
+    GameObject recipe;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,9 +67,13 @@ public class Pickup : MonoBehaviour
 
         if (held)
         {
+            onCraftingGrid = false;
             transform.position = mouse;
         }
-
+        if (onCraftingGrid)
+        {
+            //transform.position = recipe.transform.position;
+        }
         
 
     }
